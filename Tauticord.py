@@ -8,8 +8,12 @@ from modules.logs import *
 import modules.tautulli_connector as tautulli
 import modules.discord_connector as discord
 import modules.analytics as GA
+import os
 
-config = config_parser.Config(app_name="Tauticord", config_path="config.yaml")
+if os.getenv("TAUTULLI_IP"):
+    config = config_parser.Config(app_name="Tauticord", config_path="config.yaml.example")
+else:
+    config = config_parser.Config(app_name="Tauticord", config_path="config.yaml")
 
 analytics = GA.GoogleAnalytics(analytics_id='UA-174268200-2',
                                anonymous_ip=True,
